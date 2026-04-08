@@ -1,0 +1,39 @@
+{
+  "institucion": {
+    "nombre": "ADMINISTRACIÓN PÚBLICA",
+    "subtitulo": "Unidad / Departamento",
+    "pie": "Unidad / Departamento"
+  },
+  "dominio_correo": "",
+  "tipos_adicionales": {
+    "nombre": [],
+    "texto": {}
+  },
+  "version": "v7.0",
+  "_ayuda": {
+    "descripcion": "Archivo de configuración del Generador de Índice + Foliador",
+    "institucion_ejemplo": {
+      "nombre": "GORE LOS RÍOS",
+      "subtitulo": "División de Planificación y Desarrollo Regional",
+      "pie": "DIPLADE — GORE Los Ríos"
+    },
+    "dominio_correo_ejemplo": "goredelosrios.cl",
+    "tipos_adicionales_ejemplo": {
+      "nombre": [
+        ["Formulario", ["_formulario_", "form_n", "_form_"]],
+        ["Comprobante", ["_comprobante_", "comprobante_pago"]],
+        ["Ficha IDI", ["_ficha_idi_", "ficha_idi", "_fidi_"]],
+        ["Bases", ["_bases_", "bases_licitacion", "bases_concurso"]],
+        ["Acta de Recepción", ["acta_recepcion", "acta_recep"]],
+        ["Informe Social", ["informe_social", "inf_social", "_is_"]],
+        ["Resolución Alcaldicia", ["res_alcaldicia", "decreto_alcaldicio"]]
+      ],
+      "texto": {
+        "Formulario": ["formulario n°", "complete los campos", "firma del solicitante"],
+        "Comprobante": ["comprobante de pago", "n° operación", "monto pagado"],
+        "Ficha IDI": ["identificación de la iniciativa", "código bip", "nombre del proyecto"],
+        "Informe Social": ["informe social", "diagnóstico familiar", "condición socioeconómica"]
+      }
+    }
+  }
+}
