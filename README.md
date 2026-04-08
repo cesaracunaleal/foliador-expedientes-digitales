@@ -2,7 +2,7 @@
 
 Herramienta para la organización, foliado y verificación de integridad de expedientes digitales en entornos institucionales.
 
----
+-----
 
 ## Descripción
 
@@ -10,7 +10,7 @@ La Comisión Regional de Uso del Borde Costero (CRUBC) de la Región de Los Río
 
 Esta aplicación automatiza la construcción de índices documentales y el foliado de expedientes, incorporando mecanismos de trazabilidad, validación y control de integridad. Su arquitectura permite adaptarla a otros contextos administrativos mediante configuración externa, sin modificar el código fuente.
 
----
+-----
 
 ## Funcionalidades
 
@@ -42,52 +42,54 @@ Esta aplicación automatiza la construcción de índices documentales y el folia
 
 ### Exportación
 
-| Formato | Contenido |
-|---------|-----------|
-| Excel   | Índice completo con metadatos y hash |
-| Word    | Versión formal del índice |
-| Log     | Advertencias, validaciones y trazabilidad |
+|Formato|Contenido                                |
+|-------|-----------------------------------------|
+|Excel  |Índice completo con metadatos y hash     |
+|Word   |Versión formal del índice                |
+|Log    |Advertencias, validaciones y trazabilidad|
 
----
+-----
 
 ## Configuración externa
 
-El sistema utiliza un archivo `config.json` que permite adaptar:
+El sistema utiliza un archivo `config_indice.json` que se genera automáticamente al primer uso. Permite adaptar:
 
 ```json
 {
-  "institucion": "Gobierno Regional de Los Ríos",
-  "dominio_correo": "gorelosrios.cl",
-  "tipos_documentales": ["Oficio", "Informe", "Acta", "Resolución"],
-  "patrones_identificacion": {
-    "numero_documento": "N°\\s*(\\d+)",
-    "fecha_nombre": "(\\d{4}-\\d{2}-\\d{2})"
+  "institucion": {
+    "nombre": "GOBIERNO REGIONAL DE LOS RÍOS",
+    "subtitulo": "Comisión Regional de Uso del Borde Costero",
+    "pie": "Oficina Técnica CRUBC"
   },
-  "carpetas_excluidas": ["output", "shp_components"]
+  "dominio_correo": "gorelosrios.cl",
+  "tipos_adicionales": {
+    "nombre": [],
+    "texto": {}
+  }
 }
 ```
 
 Sin necesidad de modificar el código fuente.
 
----
+-----
 
 ## Pruebas automáticas
 
-El módulo de pruebas (`unittest`) valida:
+Las pruebas están integradas en el script principal y cubren:
 
 - Detección de fechas
 - Clasificación documental
 - Foliado
-- Integridad (hash)
+- Integridad (hash SHA-256)
 - Funcionamiento de caché
 
 Ejecutar:
 
 ```bash
-python -m unittest test_generador.py
+python generador_indice.py --test
 ```
 
----
+-----
 
 ## Arquitectura
 
@@ -95,21 +97,21 @@ python -m unittest test_generador.py
 - Clase de dominio (`ExpedienteDigital`) que encapsula la lógica del expediente
 - Separación conceptual entre análisis, foliado, exportación e interfaz
 
----
+-----
 
 ## Tecnologías
 
-| Componente | Tecnología |
-|------------|------------|
-| Lenguaje | Python 3.10+ |
-| Hashing | `hashlib` |
-| Paralelismo | `concurrent.futures` |
-| Excel | `openpyxl` |
-| Word | `python-docx` |
-| Interfaz | `tkinter` |
-| PDF | `pdfplumber` |
+|Componente |Tecnología          |
+|-----------|--------------------|
+|Lenguaje   |Python 3.10+        |
+|Hashing    |`hashlib`           |
+|Paralelismo|`concurrent.futures`|
+|Excel      |`openpyxl`          |
+|Word       |`python-docx`       |
+|Interfaz   |`tkinter`           |
+|PDF        |`pdfplumber`        |
 
----
+-----
 
 ## Instalación
 
@@ -122,16 +124,17 @@ python generador_indice.py
 ```
 
 Opciones adicionales:
+
 - Lanzador `.vbs` para ejecución sin consola en Windows
 - Archivo `.bat` para depuración
 
----
+-----
 
 ## Aplicación en gestión pública
 
 Esta herramienta contribuye a la estandarización documental, la reducción de errores manuales y la trazabilidad de expedientes. Está diseñada como una capa operativa complementaria a los sistemas documentales formales, útil especialmente en la preparación de expedientes previo a procesos de revisión, auditoría o entrega institucional.
 
----
+-----
 
 ## Autor
 
@@ -139,8 +142,8 @@ Esta herramienta contribuye a la estandarización documental, la reducción de e
 Geógrafo — Especialista en gestión territorial y borde costero  
 Gobierno Regional de Los Ríos, Chile
 
----
+-----
 
 ## Licencia
 
-Apache License 2.0 — libre uso, modificación y distribución con atribución al autor original. Incluye protección explícita de patentes: cualquier entidad que utilice este código renuncia a reclamar derechos de patente sobre él.
+Este proyecto está bajo la [Apache License 2.0](LICENSE). Permite uso, modificación y distribución libre con atribución al autor original, e incluye protección explícita de patentes.
