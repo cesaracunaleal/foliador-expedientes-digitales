@@ -144,7 +144,7 @@ Opciones adicionales:
 | Versión | Cambios principales |
 |---------|-------------------|
 | v7.1 | Módulo de auditoría de integridad con reporte Excel y log |
-| v7.1 | DataClass, caché JSON, hash global, filtros, historial de ediciones, config externa |
+| v7.0 | DataClass, caché JSON, hash global, filtros, historial de ediciones, config externa |
 | v6.0 | Hash SHA-256 por archivo, procesamiento paralelo, clase ExpedienteDigital |
 
 ---
