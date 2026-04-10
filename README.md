@@ -1,8 +1,8 @@
-# Generador de Índice + Foliador Digital (v7.0)
+# Generador de Índice + Foliador Digital (v7.1)
 
 Herramienta para la organización, foliado y verificación de integridad de expedientes digitales en entornos institucionales.
 
------
+---
 
 ## Descripción
 
@@ -10,7 +10,7 @@ La Comisión Regional de Uso del Borde Costero (CRUBC) de la Región de Los Río
 
 Esta aplicación automatiza la construcción de índices documentales y el foliado de expedientes, incorporando mecanismos de trazabilidad, validación y control de integridad. Su arquitectura permite adaptarla a otros contextos administrativos mediante configuración externa, sin modificar el código fuente.
 
------
+---
 
 ## Funcionalidades
 
@@ -31,8 +31,18 @@ Esta aplicación automatiza la construcción de índices documentales y el folia
 
 - Hash SHA-256 por archivo y hash global del expediente
 - Registro de fuente de extracción (nombre, texto, metadata) y regla aplicada
-- Historial de ediciones
+- Historial de ediciones con usuario y timestamp
 - Generación de log de auditoría
+
+### Auditoría de integridad (nuevo en v7.1)
+
+Módulo que permite verificar la integridad de un expediente ya foliado:
+
+- Carga el Excel del índice generado previamente
+- Recalcula SHA-256 de cada archivo en la carpeta Foliados
+- Compara resultado por archivo: `ÍNTEGRO` / `MODIFICADO` / `FALTANTE` / `DESCONOCIDO`
+- Exporta reporte de auditoría en Excel y log `.txt`
+- Accesible desde el botón **Auditar** en la interfaz principal
 
 ### Rendimiento
 
@@ -42,13 +52,13 @@ Esta aplicación automatiza la construcción de índices documentales y el folia
 
 ### Exportación
 
-|Formato|Contenido                                |
-|-------|-----------------------------------------|
-|Excel  |Índice completo con metadatos y hash     |
-|Word   |Versión formal del índice                |
-|Log    |Advertencias, validaciones y trazabilidad|
+| Formato | Contenido |
+|---------|-----------|
+| Excel   | Índice completo con metadatos y hash |
+| Word    | Versión formal del índice |
+| Log     | Advertencias, validaciones y trazabilidad |
 
------
+---
 
 ## Configuración externa
 
@@ -71,7 +81,7 @@ El sistema utiliza un archivo `config_indice.json` que se genera automáticament
 
 Sin necesidad de modificar el código fuente.
 
------
+---
 
 ## Pruebas automáticas
 
@@ -89,7 +99,7 @@ Ejecutar:
 python generador_indice.py --test
 ```
 
------
+---
 
 ## Arquitectura
 
@@ -97,21 +107,21 @@ python generador_indice.py --test
 - Clase de dominio (`ExpedienteDigital`) que encapsula la lógica del expediente
 - Separación conceptual entre análisis, foliado, exportación e interfaz
 
------
+---
 
 ## Tecnologías
 
-|Componente |Tecnología          |
-|-----------|--------------------|
-|Lenguaje   |Python 3.10+        |
-|Hashing    |`hashlib`           |
-|Paralelismo|`concurrent.futures`|
-|Excel      |`openpyxl`          |
-|Word       |`python-docx`       |
-|Interfaz   |`tkinter`           |
-|PDF        |`pdfplumber`        |
+| Componente | Tecnología |
+|------------|------------|
+| Lenguaje | Python 3.10+ |
+| Hashing | `hashlib` |
+| Paralelismo | `concurrent.futures` |
+| Excel | `openpyxl` |
+| Word | `python-docx` |
+| Interfaz | `tkinter` |
+| PDF | `pdfplumber` |
 
------
+---
 
 ## Instalación
 
@@ -124,17 +134,26 @@ python generador_indice.py
 ```
 
 Opciones adicionales:
-
 - Lanzador `.vbs` para ejecución sin consola en Windows
 - Archivo `.bat` para depuración
 
------
+---
+
+## Historial de versiones
+
+| Versión | Cambios principales |
+|---------|-------------------|
+| v7.1 | Módulo de auditoría de integridad con reporte Excel y log |
+| v7.1 | DataClass, caché JSON, hash global, filtros, historial de ediciones, config externa |
+| v6.0 | Hash SHA-256 por archivo, procesamiento paralelo, clase ExpedienteDigital |
+
+---
 
 ## Aplicación en gestión pública
 
 Esta herramienta contribuye a la estandarización documental, la reducción de errores manuales y la trazabilidad de expedientes. Está diseñada como una capa operativa complementaria a los sistemas documentales formales, útil especialmente en la preparación de expedientes previo a procesos de revisión, auditoría o entrega institucional.
 
------
+---
 
 ## Autor
 
@@ -142,7 +161,7 @@ Esta herramienta contribuye a la estandarización documental, la reducción de e
 Geógrafo — Especialista en gestión territorial y borde costero  
 Gobierno Regional de Los Ríos, Chile
 
------
+---
 
 ## Licencia
 
